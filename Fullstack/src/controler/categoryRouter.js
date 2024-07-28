@@ -9,11 +9,11 @@ function router(menu){
     .get(  async (req  , res ) => {
     // res.send(category);
     let query = {};
-    let data = await getdata("category" , query )
+    let category = await getdata("category" , query )
     
 
    
-    res.render('category', {title : ' Category page' , category : data , menu})
+    res.render('category', {title : ' Category page' , category  , menu})
 })
 
     categoryRouter.route('/details')

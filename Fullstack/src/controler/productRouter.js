@@ -9,9 +9,9 @@ function router(menu){
     productRouter.route('/')
     .get( async (req , res) => {
         let query = {}
-        let data = await getdata('products' , query)
+        let Products = await getdata('products' , query)
     // res.send(Products)
-    res.render('products' , {title  : 'Products page' , Products  : data , menu})
+    res.render('products' , {title  : 'Products page' , Products , menu})
 } )
 
     productRouter.route('/list/:id')
