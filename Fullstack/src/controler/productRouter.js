@@ -18,7 +18,7 @@ function router(menu){
     .get( async (req , res) => { 
         let id = req.params.id;
         let query = {'category_id' : Number(id) }
-        let data = await  getdata('products' , query)
+        let Products = await  getdata('products' , query)
         res.render('products' , {title  : 'Products page' , Products, menu} )
     // res.send('hi , from product details route');
 })
