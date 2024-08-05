@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+    
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous">
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+      .rain {
+        background-color: aqua;
+        height: 90vh;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRdtClTHAEeVtnsWKVLGBip12GT98q03418w&s');
+    background-size: cover; /* Optional: Ensures the image covers the whole background */
+    background-position: center; /* Optional: Centers the image */
+    background-repeat: no-repeat; /* Optional: Prevents tiling of the image */
+}
+
+.clear {
+        background-color: aqua;
+        height: 90vh;
+    background-image: url('https://img.freepik.com/free-photo/white-cloud-blue-sky_1203-9447.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1722816000&semt=ais_hybrid');
+    background-size: cover; /* Optional: Ensures the image covers the whole background */
+    background-position: center; /* Optional: Centers the image */
+    background-repeat: no-repeat; /* Optional: Prevents tiling of the image */
+}
+
+
+.card {
+    background-color: rgba(255, 255, 255, 0.5); /* Set transparency */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Transparent border */
+}
+
+.card-header {
+    background-color: rgba(255, 255, 255, 0.5); /* Set transparency */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Transparent border */
+}
+
+.card-body {
+    background-color: rgba(255, 255, 255, 0.5); /* Set transparency */
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Weather App <i class="bi bi-cloud-fog2-fill"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li> -->
+                </ul>
+                <form class="d-flex" role="search" method="GET" action="/weather">
+                    <input class="form-control me-2" type="search" placeholder="Search" id="search" name="city" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <section class="rain">
+        <!-- content-1 -->
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis ">Weather for <%= data.city.name %></h1>
+        </div>
+
+        <!-- cards-1 -->
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm weather-card">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Temperature</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title"><%=data.list[0].temp.day%><small class="text-body-secondary fw-light"><span>&#8451;</span></small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Max Temp : <%= data.list[0].temp.max%><span>&#8451;</span></li>
+                            <li>Min Temp : <%= data.list[0].temp.min%> <span>&#8451;</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Feels like</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title"><%=data.list[0].feels_like.day%><small class="text-body-secondary fw-light"><span>&#8451;</span></small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li><i class="bi bi-moon-fill"></i> night: <%=data.list[0].feels_like.night%></li>
+                            <li class="weather">evening: <%=data.list[0].feels_like.eve%></li>
+                            <li>morning: <%=data.list[0].feels_like.morn%></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3 text-bg">
+                        <h4 class="my-0 fw-normal">Weather</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title"><%=data.list[0].weather[0].description%></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>pressure: <%=data.list[0].pressure%></li>
+                            <li>humidity: <%=data.list[0].humidity%>%</li>
+                            <li>speed: <%=data.list[0].speed%> m/s</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
